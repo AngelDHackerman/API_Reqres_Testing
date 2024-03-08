@@ -34,4 +34,48 @@ __Description:__ This point retrieves a paged list of users. You can specify the
         * __`url`__: url for the support page for the reqres proyect. 
         * __`text`__: a basic description for why support the proyect.
 
+### Example of response: 
 
+```
+{
+    "page": 2,
+    "per_page": 2,
+    "total": 12,
+    "total_pages": 2,
+    "data": [
+    {
+        "id": 7,
+        "email": "michael.lawson@reqres.in",
+        "first_name": "Michael",
+        "last_name": "Lawson",
+        "avatar": "https://reqres.in/img/faces/7-image.jpg"
+    },
+    // ... more users
+  ],
+  "support": {
+        "url": "https://reqres.in/#support-heading",
+        "text": "To keep ReqRes free, contributions towards server costs are appreciated!"
+    }
+}
+```
+
+### Errors: 
+
+* Code: `200 ok` 
+* Content:
+
+    ```
+    {
+        "page": 8,
+        "per_page": 6,
+        "total": 12,
+        "total_pages": 2,
+        "data": [],
+        "support": {
+            "url": "https://reqres.in/#support-heading",
+            "text": "To keep ReqRes free, contributions towards server costs are appreciated!"
+        }
+    }
+    ```
+
+* Description: This "Error" is returned when a non-existing page is selected. 
