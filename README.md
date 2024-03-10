@@ -61,6 +61,37 @@ This point retrieves a paged list of users. You can specify the page number in t
 }
 ```
 
+### Examples of code for call the endpoint:
+
+* __curl:__
+```
+curl -X GET "https://reqres.in/api/users?page=2"
+```
+
+* __javascript (Fetch):__
+```
+async function fetchUsers(page) {
+  try {
+    const response = await fetch(`https://reqres.in/api/users?page=${page}`);
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+fetchUsers(2); // Calls the funtion with the page number you want.
+```
+
+* __Python (Requests):__
+```
+import requests
+
+response = requests.get("https://reqres.in/api/users?page=2")
+data = response.json()
+print(data)
+```
+
 ### Errors: 
 
 * __Code:__ `200 ok` 
@@ -124,6 +155,38 @@ Retrieve detailed information of a single user by using their unique ID.
         "text": "To keep ReqRes free, contributions towards server costs are appreciated!"
     }
 }
+```
+
+### Examples of code for call the endpoint:
+
+* __curl:__
+```
+curl -X GET "https://reqres.in/api/users/2"
+```
+
+* __javascript (Fetch):__
+```
+async function fetchSingleUser(userId) {
+  try {
+    const response = await fetch(`https://reqres.in/api/users/${userId}`);
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+fetchSingleUser(2); // Calls the function with the number of the user you want.
+
+```
+
+* __Python (Requests):__
+```
+import requests
+
+response = requests.get("https://reqres.in/api/users/2")
+data = response.json()
+print(data)
 ```
 
 ### Errors: 
