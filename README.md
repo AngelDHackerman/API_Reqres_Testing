@@ -63,8 +63,8 @@ This point retrieves a paged list of users. You can specify the page number in t
 
 ### Errors: 
 
-* Code: `200 ok` 
-* Content:
+* __Code:__ `200 ok` 
+* __Content:__
 
     ```
     {
@@ -80,7 +80,7 @@ This point retrieves a paged list of users. You can specify the page number in t
     }
     ```
 
-* Description: This "Error" is returned when a non-existing page is selected. 
+* __Description:__ This "Error" is actually an expected behavior, API will only return the data shown above. 
 
 
 ## Endpoint: Single User
@@ -101,3 +101,38 @@ Retrieve detailed information of a single user by using their unique ID.
     * __`data:`__ A Object that contains the following information:
         * __`id:` (int)__ The unique ID number for the user.
         * __`email:` (string)__ User's email address.
+        * __`first_name:`(string)__ User's first name.
+        * __`last_name:`(string)__ User's last name.
+        * __`avatar:`(string)__ Url to the User's avatar image.
+        * __`support:` (object)__ An object that contains the URL for contribute with the reqres.in proyect: 
+            * __`url:` (string)__ url for the support page for the reqres proyect. 
+            * __`text:` (string)__ a basic description for why support the proyect.
+
+### Example of response: 
+
+```
+{
+    "data": {
+        "id": 2,
+        "email": "janet.weaver@reqres.in",
+        "first_name": "Janet",
+        "last_name": "Weaver",
+        "avatar": "https://reqres.in/img/faces/2-image.jpg"
+    },
+    "support": {
+        "url": "https://reqres.in/#support-heading",
+        "text": "To keep ReqRes free, contributions towards server costs are appreciated!"
+    }
+}
+```
+
+### Errors: 
+
+* __Code:__ `404 not found` 
+* __Content:__
+
+    ```
+    {}
+    ```
+
+* __Description:__ This error is returned when a non-existing user is selected, and empty object will be returned with a 404 status.
