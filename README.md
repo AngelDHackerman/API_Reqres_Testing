@@ -271,7 +271,7 @@ else:
 This status code is expected when the ID is invalid, and the API will return an empty object.
 
 
-## List <Resource>
+## List Resource
 
 ### URL: `/api/unknown?page={number}`
 
