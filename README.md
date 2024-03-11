@@ -271,3 +271,118 @@ else:
 This status code is expected when the ID is invalid, and the API will return an empty object.
 
 
+## List <Resource>
+
+### URL: `/api/unknown?page={number}`
+
+### Method: `GET`
+
+### Description: 
+This endpoints returns a list of different colors with their ID, name, Hexadecimal code and the panton code (world standar for the color code).
+
+### Query Parameters:
+* __`page`__ (optional): by default each page has 6 different colors, in total there are 2 pages.
+
+### Successfull Request: 
+
+* __`Code:`__  200 OK
+* __`Content:`__ A JSON object that contains the following information:
+  * __`page:`__ (int) The current page number.
+  * __`per_page:`__ (int) The number of items per page.
+  * __`total:`__ (int) The total number of items.
+  * __`total_pages`:__ (int) The total number of pages.
+  * __`data:`__ (array) An array of objects where each object contains information about a resource:
+    * __`id:`__ (int) The unique ID number for the resource.
+    * __`name:`__ (string) The name of the resource.
+    * __`year:`__ (int) The year of the resource.
+    * __`color:`__ (string) The color associated with the resource.
+    * __`pantone_value:`__ (string) The pantone value of the resource.
+
+
+### Example of response: 
+```
+{
+    "page": 1,
+    "per_page": 6,
+    "total": 12,
+    "total_pages": 2,
+    "data": [
+        {
+            "id": 1,
+            "name": "cerulean",
+            "year": 2000,
+            "color": "#98B2D1",
+            "pantone_value": "15-4020"
+        },
+        // ... other resource objects
+    ],
+    "support": {
+            "url": "https://reqres.in/#support-heading",
+            "text": "To keep ReqRes free, contributions towards server costs are appreciated!"
+        }
+}
+```
+
+
+### Examples of code for call the endpoint:
+
+* __Curl:__
+```
+curl -X GET "https://reqres.in/api/unknown" -H "accept: application/json"
+```
+
+* __Javascript:__
+```
+  async function getResourceList() {
+    try {
+      const response = await fetch("https://reqres.in/api/unknown?page=1");
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
+  getResourceList();
+```
+
+* __python:__
+```
+import requests
+
+response = requests.get("https://reqres.in/api/unknown?page=1")
+
+if response.status_code == 200:
+    data = response.json()
+
+    print(data)
+else:
+    print("Error fetching the resources")
+```
+
+### Errors: 
+
+* __Code:__ `200 ok` 
+* __Content:__
+
+```
+{
+    "page": 987,
+    "per_page": 6,
+    "total": 12,
+    "total_pages": 2,
+    "data": [],
+    "support": {
+        "url": "https://reqres.in/#support-heading",
+        "text": "To keep ReqRes free, contributions towards server costs are appreciated!"
+    }
+}
+```
+
+* __Description:__ This "Error" is actually an expected behavior, API will only return the data shown above when and non-existing page number is selected. 
+
