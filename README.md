@@ -199,3 +199,75 @@ print(data)
     ```
 
 * __Description:__ This error is returned when a non-existing user is selected, and empty object will be returned with a 404 status.
+
+
+
+## Endpoint: Single User Not Found
+
+### URL: `/api/users/{id}`
+
+### Method: `GET`
+
+### Description: 
+When a request is done to a inexisting user ID, the API returns an empty objet with a 404 error message. 
+
+### Query Parameters:
+`id` (integer): a user ID that does not exist in the database. 
+
+### Example of response: 
+* __code:__ `404 not found`
+* __content:__ 
+```
+  {}
+```
+
+### Examples of code for call the endpoint:
+
+* __Curl:__ 
+
+```
+curl -X GET "https://reqres.in/api/users/23" -H "accept: application/json"
+
+```
+
+* __Javascript:__
+```
+async function getUser() {
+  try {
+    const response = await fetch("https://reqres.in/api/users/23");
+    if (!response.ok) {
+      throw new Error('User not found');
+    }
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+getUser();
+```
+
+* __Python:__ 
+```
+import requests
+
+response = requests.get("https://reqres.in/api/users/23")
+
+if response.status_code == 404:
+    print("User not found")
+else:
+    user = response.json()
+    print(user)
+```
+
+### Errors: 
+
+* __Code:__ 404
+* __Content:__
+```
+  {}
+```
+This status code is expected when the ID is invalid, and the API will return an empty object.
+
+
