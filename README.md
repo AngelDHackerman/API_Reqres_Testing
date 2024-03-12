@@ -485,3 +485,74 @@ else:
 
 * __Description:__ The API will return a 404 error when a non-existing ID is requested, also it will return an empty object.
 
+
+
+## Single Resource Not Found
+
+### URL
+`/api/unknown/:id`
+
+### Method
+`GET`
+
+### Description
+This endpoint retrieves information about a specific resource by its unique ID. If the resource with __the specified ID does not exist__, the endpoint responds with an error.
+
+### Path Parameters
+- `id`: (int) The unique identifier for the resource.
+
+### Error Response
+- __Code:__ `404 Not Found`
+- __Content:__ 
+```
+{} (an empty JSON object)
+```
+
+- __Description:__ This error response indicates that the requested resource could not be found. This usually occurs when the resource with the specified ID does not exist in the database.
+
+### Example of Error Response
+When a non-existent resource ID is requested, the server responds with a `404 Not Found` status code and an empty JSON object as shown below:
+
+```
+{}
+```
+
+### Examples of code for call the endpoint:
+* __Curl:__
+  ```
+  curl -X GET "https://reqres.in/api/unknown/23" -H "accept: application/json"
+  ```
+* __Javascript:__
+  ```
+  async function getNonExistentResource() {
+    try {
+      const response = await fetch("https://reqres.in/api/unknown/23");
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      console.log(data);
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
+  }
+
+  getNonExistentResource();
+  ```
+
+* __Python:__
+  ```
+  import requests
+
+  response = requests.get("https://reqres.in/api/unknown/23")
+
+  if response.status_code == 404:
+      print("Resource not found.")
+  else:
+      data = response.json()
+      print(data)
+  ```
+

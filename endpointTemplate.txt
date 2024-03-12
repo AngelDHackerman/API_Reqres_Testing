@@ -9,8 +9,17 @@
 ### Example of response:
 ### Examples of code for call the endpoint:
   * __Curl:__
+  ```
+
+  ```
   * __Javascript:__
+  ```
+
+  ```
   * __Python:__
+  ```
+
+  ```
 ### Errors:
   * __Code:__
   * __Content:__
