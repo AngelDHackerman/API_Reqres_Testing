@@ -386,3 +386,102 @@ else:
 
 * __Description:__ This "Error" is actually an expected behavior, API will only return the data shown above when and non-existing page number is selected. 
 
+
+
+## Single Resource
+
+### URL
+`/api/unknown/{id}`
+
+### Method
+`GET`
+
+### Description
+Retrieves information about a specific resource by its ID.
+
+### Query Parameters
+`id` unique ID of the resource. 
+
+### Successful Request
+- __Code:__ `200 OK`
+- __Content:__ A JSON object that includes details about the resource and support information.
+  - `data`: (object) Contains details about the resource:
+    - `id`: (int) The unique identifier for the resource.
+    - `name`: (string) The name of the resource.
+    - `year`: (int) The year associated with the resource.
+    - `color`: (string) The color representation of the resource.
+    - `pantone_value`: (string) The pantone value linked to the resource.
+  - `support`: (object) Contains support information for the reqres project:
+    - `url`: (string) The URL to the support page for the reqres project.
+    - `text`: (string) A short description of why to support the project.
+
+### Example of Response
+```
+{
+  "data": {
+    "id": 2,
+    "name": "fuchsia rose",
+    "year": 2001,
+    "color": "#C74375",
+    "pantone_value": "17-2031"
+  },
+  "support": {
+    "url": "https://reqres.in/#support-heading",
+    "text": "To keep ReqRes free, contributions towards server costs are appreciated!"
+  }
+}
+```
+
+### Examples of code for call the endpoint:
+
+* __Curl:__
+```
+curl -X GET "https://reqres.in/api/unknown/2" -H "accept: application/json"
+```
+
+* __Javascript:__
+```
+async function getSingleResource() {
+  try {
+    const response = await fetch("https://reqres.in/api/unknown/2");
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok: ' + response.statusText);
+    }
+
+    const data = await response.json();
+
+    console.log(data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+getSingleResource();
+```
+
+* __Python:__
+```
+import requests
+
+response = requests.get("https://reqres.in/api/unknown/2")
+
+if response.status_code == 200:
+    data = response.json()
+
+    print(data)
+else:
+    print('Error:', response.status_code, response.text)
+```
+
+### Errors: 
+
+* __Code:__ `404 Not Found` 
+* __Content:__
+
+```
+{}
+```
+
+* __Description:__ The API will return a 404 error when a non-existing ID is requested, also it will return an empty object.
+
