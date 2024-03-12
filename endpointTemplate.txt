@@ -1,0 +1,17 @@
+## Endpoint:
+### URL:
+### Method:
+### Description:
+### Query Parameters:
+### Successful Request:
+  * __code:__
+  * __content:__
+### Example of response:
+### Examples of code for call the endpoint:
+  * __Curl:__
+  * __Javascript:__
+  * __Python:__
+### Errors:
+  * __Code:__
+  * __Content:__
+  * __Description:__
