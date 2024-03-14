@@ -556,3 +556,83 @@ When a non-existent resource ID is requested, the server responds with a `404 No
       print(data)
   ```
 
+## Create User
+### URL:
+`/api/users`
+
+### Method:
+`POST`
+
+### Description:
+Creates a new user with the provided information.
+
+### Body Parameters:
+
+* `name` (string): The name of the user.
+* `job` (string): The user's job title.
+
+__Example:__
+
+```
+{
+    "name": "morpheus",
+    "job": "leader"
+}
+```
+
+### Successful Request:
+  * __Code:__ `201 Created`
+  * __Content:__ A JSON object containing the newly created user's information, including a unique ID and creation timestamp.
+
+### Example of Response:
+```
+{
+  "name": "morpheus",
+  "job": "leader",
+  "id": "619",
+  "createdAt": "2024-03-14T01:41:19.491Z"
+}
+```
+
+### Examples of code for call the endpoint:
+  * __Curl:__
+  ```
+  curl -X POST "https://reqres.in/api/users" -H "Content-Type: application/json" -d '{"name": "morpheus", "job": "leader"}'
+
+  ```
+  * __Javascript:__
+  ```
+async function createUser() {
+  try {
+    const response = await fetch("https://reqres.in/api/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name: "morpheus", job: "leader" })
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+createUser();
+
+  ```
+  * __Python:__
+  ```
+  import requests
+response = requests.post("https://reqres.in/api/users", json={"name": "morpheus", "job": "leader"})
+if response.status_code == 201:
+    print(response.json())
+else:
+    print('Error:', response.status_code, response.text)
+
+  ```
